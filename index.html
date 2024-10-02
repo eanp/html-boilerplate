@@ -48,6 +48,7 @@
         </a>
         <nav class="flex flex-wrap items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200">
           <a href="/" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Form</a>
+          <a href="/tablepart.html" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Tablepart</a>
           <a href="/playground.html" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900">Playground</a>
         </nav>
       </div>
@@ -152,6 +153,17 @@
     }
     inputEditor.addEventListener('input', updateOutput);
     updateOutput();
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Tab') {
+        e.preventDefault();
+
+        const TAB_WIDTH = 4;
+
+        //* Apply 1 space for every tab width
+        document.execCommand('insertText', false, ' '.repeat(TAB_WIDTH));
+      }
+    });
   </script>
 </body>
 
