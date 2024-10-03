@@ -33,6 +33,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+  <!-- alpine -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplemde@latest/dist/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/simplemde@latest/dist/simplemde.min.js"></script>
+
 </head>
 
 <body class="flex items-start justify-center flex-col">
@@ -48,9 +52,12 @@
         </a>
         <nav class="flex flex-wrap items-center mb-5 text-base md:mb-0 md:pl-8 md:ml-8 md:border-l md:border-gray-200">
           <a href="/" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 capitalize">Form</a>
-          <a href="/tablepart.html" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 capitalize">tablepart</a>
-          <a href="/alpine.html" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 capitalize">alpine</a>
-          <a href="/playground.html" class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 capitalize">playground</a>
+          <a href="/tablepart.html"
+            class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 capitalize">tablepart</a>
+          <a href="/alpine.html"
+            class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 capitalize">alpine</a>
+          <a href="/playground.html"
+            class="mr-5 font-medium leading-6 text-gray-600 hover:text-gray-900 capitalize">playground</a>
         </nav>
       </div>
     </div>
@@ -58,14 +65,19 @@
 
   <!-- main -->
   <div class="flex w-full max-w-full p-0">
-    <textarea id="inputeditor"
-      class="bg-gray-800 h-screen focus:outline-none fira-code w-1/2 caret-slate-50 text-neutral-50" wrap="soft"
-      value={inputText}onChange={handleInputChange} spellcheck="false">
-      <!-- start code input -->
+    <div x-data="{
+      editor: null,
+      init() {
+        this.editor = new SimpleMDE({ element: this.$refs.editor });
+      }
+    }">
+      <textarea id="inputeditor" x-ref="editor" spellcheck="false" value={inputText}onChange={handleInputChange}
+        class="bg-gray-800 h-screen focus:outline-none fira-code w-1/2 caret-slate-50 text-neutral-50">
+          <!-- start code input -->
 
-
-      <!-- end code input -->
-    </textarea>
+        <!-- end code input -->
+      </textarea>
+    </div>
 
     <div id="output" class="bg-gray-50 w-1/2 p-4 flex flex-row flex-wrap">
     </div>
